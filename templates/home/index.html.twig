@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+
+ <div class="jumbotron">
+ {% if app.user %}
+        <div class="d-flex ms-auto">
+           <h2> Bienvenue sur notre entreprise, vous etes connecté avec l'email
+            <span>{{ app.user.username }}</span></h2>
+        </div>
+    {% endif %}
+
+    <p>Nous avons  reunions.</p>
+ </div>
+
+  <div>
+  
+
+
+  </div>
+
+
+
+
+</div>
+
+
+
+   
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employe index{% endblock %}
+
+{% block body %}
+  <div class="container">
+      <h1>Liste des employés</h1>
+<a href="{{ path('employe_new') }}" class="btn btn-primary">Ajouter un employer</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Salaire</th>
+                <th>Email</th>
+                <th>Post</th>
+                <th>Telephone</th>
+                <th>Section</th>
+                 <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employe in employes %}
+            <tr>
+                <td>{{ employe.id }}</td>
+                <td>{{ employe.nom }}</td>
+                <td>{{ employe.prenom }}</td>
+                <td>{{ employe.salaire }}</td>
+                <td>{{ employe.email }}</td>
+                {# <td>{{ employe.createdAt ? employe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ employe.updatedAt ? employe.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+ #}                <td>{{ employe.post }}</td>
+                <td>{{ employe.telephone }}</td>
+                <td>{{ employe.section }}</td>
+                <td><img src="{{ vich_uploader_asset(employe, 'imageFile') }}" width="100px"; height="100px" > </td>
+
+                <td>
+                    <a href="{{ path('employe_show', {'id': employe.id}) }}" class="btn btn-warning">Detail</a>
+                    <a href="{{ path('employe_edit', {'id': employe.id}) }}" class="btn btn-dark">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+  </div>
+{% endblock %}

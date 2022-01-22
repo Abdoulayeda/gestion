@@ -1,0 +1,44 @@
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">DiaoEntreprise</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse1">
+                <div class="navbar-nav">
+                    <a href="/home" class="nav-item nav-link active">Acceuil</a>
+                    
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="/admin" class="nav-item nav-link active">Admin</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_DIRECTEUR') %}
+                    <a href="/directeur" class="nav-item nav-link active">Directeur</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_SECRETAIRE') %}
+                    <a href="{{ path('secretaire') }}" class="nav-item nav-link active">Secretaire</a>
+                   <a href="{{ path('admin_reunion_index') }}" class="nav-item nav-link active">Reunion</a>
+                     <a href="{{ path('employe_index') }}" class="nav-item nav-link active">Employées</a> 
+
+
+                    {% endif %}
+
+                    {% if not app.user %}
+                    <a href="/register" class="nav-item nav-link active">Inscription</a>
+                    <a href="/login" class="nav-item nav-link active">Connexion</a>
+                    {% endif %}
+                </div>
+              {#   <form class="d-flex ms-auto">
+                    <input type="text" class="form-control me-sm-2" placeholder="Search">
+                    <button type="submit" class="btn btn-outline-light">Search</button>
+                </form> #}
+                <div class="d-flex ms-auto">
+                 {% if app.user %}
+                    <div class="mb-3">
+                        {# You are logged in as {{ app.user.username }},#} <a href="{{ path('app_logout') }}" class="btn btn-danger active">Déconnexion</a> 
+                    </div>
+                 {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </nav>

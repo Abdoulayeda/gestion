@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reunion{% endblock %}
+
+{% block body %}
+<div class="container mb-4">
+    <h1>Reunion</h1>
+
+    <table class="table table-stripped">
+        <tbody>
+          
+            <tr>
+                <th>Nom</th>
+                <td>{{ reunion.nom }}</td>
+            </tr>
+            <tr>
+                <th>Theme</th>
+                <td>{{ reunion.theme }}</td>
+            </tr>
+            <tr>
+                <th>Créer le</th>
+                <td>{{ reunion.createdAt ? reunion.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Prevu le</th>
+                <td>{{ reunion.prevuAt ? reunion.prevuAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fait</th>
+                <td>{{ reunion.fait ? 'Oui' : 'Non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_reunion_index') }}">Retourner vers la liste des reunions</a>
+
+    <a href="{{ path('admin_reunion_edit', {'id': reunion.id}) }}" class="btn btn-primary">Modifier</a>
+
+    {{ include('admin_reunion/_delete_form.html.twig') }}
+
+    </div>
+{% endblock %}

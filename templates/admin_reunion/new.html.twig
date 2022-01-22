@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Reunion{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-4">
+ <h1>Créer un nouveau Reunion</h1>
+
+    {{ include('admin_reunion/_form.html.twig') }}
+
+    <a href="{{ path('admin_reunion_index') }}">Aller vers la liste des reunions</a>
+
+</div>
+
+{% endblock %}

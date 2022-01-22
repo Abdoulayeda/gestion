@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Reunions{% endblock %}
+
+{% block body %}
+
+<div class="container mb-5">
+  <h1>Liste des reunions </h1>
+    <a href="{{ path('admin_reunion_new') }}" class="btn btn-primary">Ajouter une  reunion</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro</th>
+                <th>Nom</th>
+                <th>Theme</th>
+                <th>Prevu le</th>
+                <th>Fait</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reunion in reunions %}
+            <tr>
+                <td>{{ reunion.id }}</td>
+                <td>{{ reunion.nom }}</td>
+                <td>{{ reunion.theme|raw }}</td>
+                <td>{{ reunion.prevuAt ? reunion.prevuAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reunion.fait ? 'OUI' : 'NON' }}</td>
+                <td>
+                    <a href="{{ path('admin_reunion_show', {'id': reunion.id}) }}" class="btn btn-success">show</a> </td>
+                 <td>   <a href="{{ path('admin_reunion_edit', {'id': reunion.id}) }}" class="btn btn-warning">edit</a>
+                   
+                </td>
+                <td>
+                  <form method="post" action="{{ path('admin_reunion_delete', {'id': reunion.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reunion.id) }}">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de reunion</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

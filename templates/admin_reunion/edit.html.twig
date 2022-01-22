@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reunion{% endblock %}
+
+{% block body %}
+  <div class="container">
+
+  <h1>Edit Reunion</h1>
+
+    {{ include('admin_reunion/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('admin_reunion_index') }}">Retour vers la liste</a>
+
+<p>  Cliquer sur le bouton pour suprimer la reunion.  {{ include('admin_reunion/_delete_form.html.twig') }}
+</p>
+  </div>
+{% endblock %}
